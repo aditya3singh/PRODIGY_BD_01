@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-2/3">
+        <h2 class="text-xl font-bold mb-4 text-center">Search Results</h2>
+        
+        <% if (results.length > 0) { %>
+            <table class="w-full border-collapse border border-gray-300">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="border p-2">Name</th>
+                        <th class="border p-2">Email</th>
+                        <th class="border p-2">Age</th>
+                        <th class="border p-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% results.forEach(user => { %>
+                        <tr>
+                            <td class="border p-2"><%= user.name %></td>
+                            <td class="border p-2"><%= user.email %></td>
+                            <td class="border p-2"><%= user.age %></td>
+                            <td class="border p-2 flex space-x-2">
+                                <a href="/edit/<%= user.id %>" class="bg-yellow-500 text-white px-3 py-1 rounded">Edit</a>
+                                <a href="/delete/<%= user.id %>" class="bg-red-500 text-white px-3 py-1 rounded">Delete</a>
+                                <a href="/read/<%= user.id %>" class="bg-blue-500 text-white px-3 py-1 rounded">Read</a>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } else { %>
+            <p class="text-center text-red-500">No results found.</p>
+        <% } %>
+        
+        <a href="/" class="block text-center bg-gray-500 text-white px-4 py-2 rounded mt-4">Back</a>
+    </div>
+</body>
+</html>
